@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176b4d" />
+    <title>Tinkora</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">T</span>
+          <h1>Tinkora</h1>
+        </div>
+        <div class="runtime-status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="runtime-label">Loading</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="input-pane">
+        <div class="section-heading">
+          <h2 id="input-heading">Input</h2>
+          <span class="section-index">01</span>
+        </div>
+
+        <form id="run-form">
+          <label class="sr-only" for="name-input">Input</label>
+          <div class="command-row">
+            <input
+              id="name-input"
+              name="name"
+              type="text"
+              value="Tinkora"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button id="run-button" type="submit" disabled>Run</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="output-pane" aria-labelledby="output-heading" data-testid="output-panel">
+        <div class="section-heading">
+          <h2 id="output-heading">Output</h2>
+          <span class="section-index">02</span>
+        </div>
+
+        <div class="result-meta">
+          <span id="result-status">Waiting</span>
+          <span id="schema-version" data-testid="schema-version"></span>
+        </div>
+
+        <div id="result-region" class="result-region" aria-live="polite">
+          <pre id="output" data-testid="output"></pre>
+          <div id="error" class="error-state" hidden>
+            <strong id="error-code" data-testid="error-code"></strong>
+            <p id="error-message" data-testid="error-message"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
