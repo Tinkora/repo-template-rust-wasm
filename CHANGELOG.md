@@ -18,6 +18,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Bilingual release-readiness and evidence-based maturity governance.
 - Reusable workflow contract checks pinned to the verified Tinkora organization baseline.
 
+### Changed
+
+- Promoted the template from Draft to Alpha after native, WASM, browser,
+  documentation, and supply-chain gates passed in GitHub-hosted CI.
+
 ### Fixed
 
 - Updated the pinned Tinkora reusable workflows to accept the standard

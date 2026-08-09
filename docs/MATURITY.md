@@ -6,7 +6,19 @@ Product maturity describes evidence and operating confidence. Capability labels 
 
 ## Current Status
 
-This local template is **Draft**. Its native, WASM, browser, documentation, and dependency gates can be validated locally, but it has no hosted CI run or external-use evidence. Do not display a maturity badge yet.
+This template is **Alpha**. On commit
+[`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2),
+the hosted [Quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297982),
+[Documentation quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297753),
+and [Supply chain](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308298024)
+runs passed. These runs cover native success and failure outcomes, MSRV, WASM,
+real-browser behavior, documentation contracts, and dependency policy. The
+repository also contains the required license, security, support, changelog,
+and release-candidate documentation.
+
+There is no documented non-maintainer external use or completed external
+feedback and remediation cycle, so the template does not meet the Beta
+threshold.
 
 Its current capability labels are **Human-usable** and **Agent schema draft**. It is not **Agent-callable** or **Dual-use**.
 

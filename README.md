@@ -6,7 +6,11 @@ A small, verifiable Rust workspace template for sharing one business core betwee
 
 ## Maturity
 
-- **Product maturity: Draft.** The template has local verification evidence, but no hosted CI run or external-use evidence. It therefore displays no maturity badge.
+- **Product maturity: Alpha.** Native Rust, MSRV, WASM, real Chromium,
+  documentation, and dependency checks passed in GitHub-hosted CI on
+  [`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2).
+  No non-maintainer external-use evidence exists yet, so the template does not
+  meet the Beta threshold.
 - **Human-usable:** the local browser tool is implemented and tested with real Chromium and the real `wasm-pack` output.
 - **Agent schema draft:** the WASM boundary demonstrates a stable, versioned object shape that could inform a future agent integration.
 - **Not Agent-callable:** this repository has no MCP transport, MCP server, tool registration, Worker, hosted endpoint, or agent authentication.
@@ -135,7 +139,16 @@ Generated `pkg/`, `node_modules/`, Rust `target/`, and Playwright artifacts are 
 
 `.github/workflows/docs-quality.yml` runs a SHA-pinned Markdown action, the checker fixture suite, and the offline tracked-file checker. `.github/workflows/supply-chain.yml` calls the SHA-pinned reusable audit workflow on pull requests, `main`, a weekly schedule, and manual dispatch. It uses Rust 1.88.0 to install `cargo-deny` 0.20.2 and `cargo-audit` 0.22.2, and checks advisories, bans, licenses, and sources.
 
-All workflows have read-only `contents` permission, use no inherited secrets, and contain no deploy, release, or publish job. These files are local configuration; they do not claim a hosted run. The reusable calls are pinned to the verified Tinkora organization baseline commit in `Tinkora/.github`; `scripts/check_workflow_contracts.rb` rejects a retired owner, a floating ref, or a missing required call.
+All workflows have read-only `contents` permission, use no inherited secrets,
+and contain no deploy, release, or publish job. Hosted evidence for commit
+[`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2)
+is retained in the successful
+[Quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297982),
+[Documentation quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297753),
+and [Supply chain](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308298024)
+runs. The reusable calls are pinned to the verified Tinkora organization
+baseline commit in `Tinkora/.github`; `scripts/check_workflow_contracts.rb`
+rejects a retired owner, a floating ref, or a missing required call.
 
 Dependabot checks GitHub Actions, Cargo, and the web crate's npm dependencies weekly in the `Asia/Shanghai` timezone. Its seven-day cooldown applies to routine version updates; Dependabot security updates are not delayed by cooldown.
 

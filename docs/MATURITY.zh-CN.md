@@ -6,7 +6,14 @@
 
 ## 当前状态
 
-这个本地模板当前为 **Draft**。其 native、WASM、浏览器、文档和依赖门禁可在本地验证，但尚无托管 CI 运行或外部使用证据，因此不得展示成熟度 badge。
+这个模板当前为 **Alpha**。在提交
+[`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2)
+上，托管的 [Quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297982)、
+[Documentation quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297753)
+和 [Supply chain](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308298024)
+运行均已通过。这些运行覆盖 native 成功与失败结果、MSRV、WASM、真实浏览器行为、文档契约和依赖策略；仓库也具备必需的 License、Security、Support、CHANGELOG 和发布候选文档。
+
+当前没有非维护者外部使用记录，也没有已完成的外部反馈与修复闭环，因此不满足 Beta 门槛。
 
 当前能力标签为 **Human-usable** 与 **Agent schema draft**，并非 **Agent-callable** 或 **Dual-use**。
 

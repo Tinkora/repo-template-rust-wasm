@@ -6,7 +6,9 @@
 
 ## 成熟度
 
-- **产品成熟度：Draft。** 模板已有本地验证证据，但没有托管 CI 运行或外部使用证据，因此不展示成熟度 badge。
+- **产品成熟度：Alpha。** Native Rust、MSRV、WASM、真实 Chromium、文档和依赖检查已在
+  [`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2)
+  的 GitHub 托管 CI 中通过。当前尚无非维护者的外部使用证据，因此不满足 Beta 门槛。
 - **可供人使用：** 本地浏览器工具已经实现，并使用真实 Chromium 与真实 `wasm-pack` 产物完成测试。
 - **Agent schema draft：** WASM 边界演示了稳定、带版本的对象结构，可作为未来 Agent 集成的 schema 草案。
 - **尚不可由 Agent 调用：** 本仓库没有 MCP transport、MCP server、tool registration、Worker、托管端点或 Agent 身份验证。
@@ -133,7 +135,14 @@ cargo audit
 
 `.github/workflows/docs-quality.yml` 运行固定 SHA 的 Markdown action、checker fixture suite 和离线 tracked-file checker。`.github/workflows/supply-chain.yml` 在 pull request、`main`、每周 schedule 和手动触发时调用固定 SHA 的 reusable audit workflow。它使用 Rust 1.88.0 安装 `cargo-deny` 0.20.2 与 `cargo-audit` 0.22.2，并检查 advisories、bans、licenses 和 sources。
 
-所有 workflow 都只有只读 `contents` 权限，不继承 secrets，也不包含 deploy、release 或 publish job。这些文件目前只是本地配置，不代表托管 CI 已运行。Reusable 调用固定到 `Tinkora/.github` 中已验证的组织基线提交；`scripts/check_workflow_contracts.rb` 会拒绝旧组织、浮动 ref 或缺失的必需调用。
+所有 workflow 都只有只读 `contents` 权限，不继承 secrets，也不包含 deploy、release 或 publish job。
+提交 [`c84ad7b`](https://github.com/Tinkora/repo-template-rust-wasm/commit/c84ad7b46390672c89388eccfd0967533a19f2f2)
+的托管证据保留在成功的
+[Quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297982)、
+[Documentation quality](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308297753)
+和 [Supply chain](https://github.com/Tinkora/repo-template-rust-wasm/actions/runs/31308298024)
+运行中。Reusable 调用固定到 `Tinkora/.github` 中已验证的组织基线提交；
+`scripts/check_workflow_contracts.rb` 会拒绝旧组织、浮动 ref 或缺失的必需调用。
 
 Dependabot 按 `Asia/Shanghai` 时区每周检查 GitHub Actions、Cargo 和 web crate 的 npm 依赖。7 天 cooldown 只用于常规版本更新；Dependabot 安全更新不会被 cooldown 延迟。
 
