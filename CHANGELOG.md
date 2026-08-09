@@ -25,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Re-pinned reusable workflows to the clean, reachable Tinkora organization
+  baseline used by current public projects.
 - Updated the pinned Tinkora reusable workflows to accept the standard
   `.gitignore` emitted by `wasm-pack 0.15.0` without weakening artifact guards.
 - Playwright smoke tests now own an isolated, configurable local server instead of reusing an unrelated process on the same port.

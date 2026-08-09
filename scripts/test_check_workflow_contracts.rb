@@ -9,7 +9,7 @@ require "yaml"
 
 class CheckWorkflowContractsTest < Minitest::Test
   CHECKER = File.expand_path("check_workflow_contracts.rb", __dir__)
-  COMMIT = "3642c080944f953fb686b22d6bd56c91a0fde789"
+  COMMIT = "e967aed0860957b24daf57e66766713c60b5bcae"
 
   def test_valid_tinkora_references_pass
     with_fixture do |root|
