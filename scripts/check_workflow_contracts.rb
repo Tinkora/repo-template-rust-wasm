@@ -3,7 +3,7 @@
 require "optparse"
 require "yaml"
 
-REUSABLE_WORKFLOW_COMMIT = "2788b2c4d38514d4f6567e141bab706be29e0598"
+REUSABLE_WORKFLOW_COMMIT = "3642c080944f953fb686b22d6bd56c91a0fde789"
 EXPECTED_CALLS = {
   ".github/workflows/quality.yml" => {
     "rust" => "Tinkora/.github/.github/workflows/reusable-rust-quality.yml@#{REUSABLE_WORKFLOW_COMMIT}",
