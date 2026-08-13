@@ -150,7 +150,7 @@ runs. The reusable calls are pinned to the verified Tinkora organization
 baseline commit in `Tinkora/.github`; `scripts/check_workflow_contracts.rb`
 rejects a retired owner, a floating ref, or a missing required call.
 
-Dependabot checks GitHub Actions, Cargo, and the web crate's npm dependencies weekly in the `Asia/Shanghai` timezone. Its seven-day cooldown applies to routine version updates; Dependabot security updates are not delayed by cooldown.
+Dependabot checks GitHub Actions, Cargo, and the web crate's npm dependencies weekly in the `Asia/Shanghai` timezone. Patch and minor updates are grouped per ecosystem, with at most two routine PRs per ecosystem and a seven-day cooldown. Major updates remain independent for migration review; Dependabot security updates are not delayed by cooldown.
 
 Before an authorized release, follow the [Release Checklist](docs/RELEASE_CHECKLIST.md). Local candidate validation does not authorize tags, GitHub Releases, or publishing credentials.
 

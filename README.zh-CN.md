@@ -144,7 +144,7 @@ cargo audit
 运行中。Reusable 调用固定到 `Tinkora/.github` 中已验证的组织基线提交；
 `scripts/check_workflow_contracts.rb` 会拒绝旧组织、浮动 ref 或缺失的必需调用。
 
-Dependabot 按 `Asia/Shanghai` 时区每周检查 GitHub Actions、Cargo 和 web crate 的 npm 依赖。7 天 cooldown 只用于常规版本更新；Dependabot 安全更新不会被 cooldown 延迟。
+Dependabot 按 `Asia/Shanghai` 时区每周检查 GitHub Actions、Cargo 和 web crate 的 npm 依赖。每个生态的 patch/minor 更新会分组，常规 PR 上限为 2 个，7 天 cooldown 只用于常规更新；major 更新独立提交供迁移审查，安全更新不会被 cooldown 延迟。
 
 任何获授权的发布前都应遵循[发布前检查清单](docs/RELEASE_CHECKLIST.zh-CN.md)。本地候选验证不授权创建 tag、GitHub Release 或发布凭据。
 
