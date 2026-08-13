@@ -4,6 +4,8 @@ A small, verifiable Rust workspace template for sharing one business core betwee
 
 [简体中文](README.zh-CN.md)
 
+[![Support Tinkora on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/tinkora)
+
 ## Maturity
 
 - **Product maturity: Alpha.** Native Rust, MSRV, WASM, real Chromium,

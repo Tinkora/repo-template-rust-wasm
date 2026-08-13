@@ -4,6 +4,8 @@
 
 [English](README.md)
 
+[![在 Ko-fi 上支持 Tinkora](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/tinkora)
+
 ## 成熟度
 
 - **产品成熟度：Alpha。** Native Rust、MSRV、WASM、真实 Chromium、文档和依赖检查已在
