@@ -3,7 +3,7 @@
 require "open3"
 require "optparse"
 
-LEGACY_IDENTITY = /zfjoy520|zhufujun|549978074@qq\.com/i
+LEGACY_IDENTITY = /zfjoy520|zhufujun|549978074@qq\.com|tinkora\.ai@gmail\.com/i
 HAN_TEXT = /\p{Han}/
 RECORD_SEPARATOR = "\x1E"
 FIELD_SEPARATOR = "\x1F"

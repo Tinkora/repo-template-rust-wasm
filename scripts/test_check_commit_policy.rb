@@ -39,6 +39,19 @@ class CheckCommitPolicyTest < Minitest::Test
     end
   end
 
+  def test_public_profile_email_fails
+    with_repository do |root|
+      commit(root, "docs: add repository guidance", {
+        "GIT_AUTHOR_EMAIL" => "tinkora.ai@gmail.com",
+        "GIT_COMMITTER_EMAIL" => "tinkora.ai@gmail.com"
+      })
+      result = run_checker(root)
+
+      refute result[:status].success?
+      assert_includes result[:output], "legacy author identity"
+    end
+  end
+
   def test_non_english_subject_fails
     with_repository do |root|
       commit(root, "README 中央对齐 Ko-fi 支持按钮")
