@@ -7,6 +7,11 @@ Follow repository-local conventions, keep public documentation in English with a
 - Write commit subjects and bodies in English and follow Conventional Commits.
 - This repository-level rule overrides any global preference for another commit-message language.
 
+## Funding Metadata
+
+- Keep `.github/FUNDING.yml` configured with `ko_fi: tinkora`.
+- Keep `https://ko-fi.com/tinkora` visible in both `README.md` and `README.zh-CN.md`.
+
 ## Frontend Design Requirement
 
 - Before creating, modifying, reviewing, or debugging any HTML page or user-facing frontend, invoke the `ui-ux-pro-max` skill.

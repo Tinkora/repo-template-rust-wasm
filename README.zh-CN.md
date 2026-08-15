@@ -118,12 +118,14 @@ npm run test:wasm-smoke
 
 Smoke 测试会独占自己启动的 HTTP server，不会复用其他进程。若 4173 端口已被占用，可仅为本次运行指定空闲端口，例如 `PLAYWRIGHT_PORT=4174 npm run test:wasm-smoke`。
 
-运行文档检查：
+运行仓库策略检查：
 
 ```bash
 npx --yes markdownlint-cli2@0.23.2 "**/*.md"
 ruby scripts/test_check_docs.rb
 ruby scripts/check_docs.rb
+ruby scripts/test_check_commit_policy.rb
+ruby scripts/check_commit_policy.rb
 ruby scripts/test_check_workflow_contracts.rb
 ruby scripts/check_workflow_contracts.rb
 ```

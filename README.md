@@ -122,12 +122,14 @@ The smoke suite owns its HTTP server and never reuses another process. If port
 4173 is occupied, choose a free port for that run, for example
 `PLAYWRIGHT_PORT=4174 npm run test:wasm-smoke`.
 
-Run documentation checks:
+Run repository policy checks:
 
 ```bash
 npx --yes markdownlint-cli2@0.23.2 "**/*.md"
 ruby scripts/test_check_docs.rb
 ruby scripts/check_docs.rb
+ruby scripts/test_check_commit_policy.rb
+ruby scripts/check_commit_policy.rb
 ruby scripts/test_check_workflow_contracts.rb
 ruby scripts/check_workflow_contracts.rb
 ```
