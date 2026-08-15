@@ -24,31 +24,31 @@ class CheckCommitPolicyTest < Minitest::Test
     end
   end
 
-  def test_legacy_identity_fails
+  def test_unapproved_identity_fails
     with_repository do |root|
       commit(root, "docs: add repository guidance", {
-        "GIT_AUTHOR_NAME" => "zhufujun",
-        "GIT_AUTHOR_EMAIL" => "549978074@qq.com",
-        "GIT_COMMITTER_NAME" => "zhufujun",
-        "GIT_COMMITTER_EMAIL" => "549978074@qq.com"
+        "GIT_AUTHOR_NAME" => "former_user",
+        "GIT_AUTHOR_EMAIL" => "former_user@example.invalid",
+        "GIT_COMMITTER_NAME" => "former_user",
+        "GIT_COMMITTER_EMAIL" => "former_user@example.invalid"
       })
       result = run_checker(root)
 
       refute result[:status].success?
-      assert_includes result[:output], "legacy author identity"
+      assert_includes result[:output], "author identity is not allowed"
     end
   end
 
   def test_public_profile_email_fails
     with_repository do |root|
       commit(root, "docs: add repository guidance", {
-        "GIT_AUTHOR_EMAIL" => "tinkora.ai@gmail.com",
-        "GIT_COMMITTER_EMAIL" => "tinkora.ai@gmail.com"
+        "GIT_AUTHOR_EMAIL" => "public@example.com",
+        "GIT_COMMITTER_EMAIL" => "public@example.com"
       })
       result = run_checker(root)
 
       refute result[:status].success?
-      assert_includes result[:output], "legacy author identity"
+      assert_includes result[:output], "author identity is not allowed"
     end
   end
 
