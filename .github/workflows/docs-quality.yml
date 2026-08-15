@@ -23,6 +23,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Lint Markdown
@@ -33,6 +34,12 @@ jobs:
 
       - name: Check repository documentation
         run: ruby scripts/check_docs.rb
+
+      - name: Test commit policy checker
+        run: ruby scripts/test_check_commit_policy.rb
+
+      - name: Check commit policy
+        run: ruby scripts/check_commit_policy.rb
 
       - name: Test reusable workflow contracts
         run: ruby scripts/test_check_workflow_contracts.rb

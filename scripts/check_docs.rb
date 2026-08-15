@@ -15,6 +15,7 @@ REQUIRED_FILES = %w[
   SUPPORT.md
   SUPPORT.zh-CN.md
   CHANGELOG.md
+  .github/FUNDING.yml
 ].freeze
 
 BILINGUAL_PAIRS = %w[
@@ -55,6 +56,22 @@ BILINGUAL_PAIRS.each do |english, chinese|
 
   errors << "Missing bilingual pair: #{english}" unless english_exists
   errors << "Missing bilingual pair: #{chinese}" unless chinese_exists
+end
+
+funding_path = File.join(root, ".github/FUNDING.yml")
+if tracked_files.include?(".github/FUNDING.yml") && File.file?(funding_path)
+  funding = File.read(funding_path, encoding: Encoding::UTF_8)
+  unless funding.lines.any? { |line| line.strip == "ko_fi: tinkora" }
+    errors << "Funding configuration must contain ko_fi: tinkora"
+  end
+end
+
+%w[README.md README.zh-CN.md].each do |path|
+  absolute_path = File.join(root, path)
+  next unless tracked_files.include?(path) && File.file?(absolute_path)
+
+  content = File.read(absolute_path, encoding: Encoding::UTF_8)
+  errors << "#{path} must include https://ko-fi.com/tinkora" unless content.include?("https://ko-fi.com/tinkora")
 end
 
 text_files = tracked_files.select do |path|

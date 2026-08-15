@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Weekly Dependabot coverage for GitHub Actions, Cargo, and npm dependencies.
 - Bilingual release-readiness and evidence-based maturity governance.
 - Reusable workflow contract checks pinned to the verified Tinkora organization baseline.
+- Repository policy checks for Ko-fi metadata, bilingual support links, legacy
+  commit identities, and English commit messages.
 
 ### Changed
 

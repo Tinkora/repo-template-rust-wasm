@@ -10,8 +10,8 @@ class CheckDocsTest < Minitest::Test
   CHECKER = File.expand_path("check_docs.rb", __dir__)
 
   REQUIRED_FILES = {
-    "README.md" => "# Template\n",
-    "README.zh-CN.md" => "# 模板\n",
+    "README.md" => "# Template\n\nSupport: https://ko-fi.com/tinkora\n",
+    "README.zh-CN.md" => "# 模板\n\nSupport: https://ko-fi.com/tinkora\n",
     "LICENSE" => "MIT License\n",
     "CONTRIBUTING.md" => "# Contributing\n",
     "CONTRIBUTING.zh-CN.md" => "# 贡献指南\n",
@@ -19,7 +19,8 @@ class CheckDocsTest < Minitest::Test
     "SECURITY.zh-CN.md" => "# 安全政策\n",
     "SUPPORT.md" => "# Support\n",
     "SUPPORT.zh-CN.md" => "# 支持\n",
-    "CHANGELOG.md" => "# Changelog\n"
+    "CHANGELOG.md" => "# Changelog\n",
+    ".github/FUNDING.yml" => "ko_fi: tinkora\n"
   }.freeze
 
   def test_valid_template_passes
@@ -55,6 +56,33 @@ class CheckDocsTest < Minitest::Test
 
       refute result[:status].success?
       assert_includes result[:output], "UTF-8 BOM is not allowed: README.md"
+    end
+  end
+
+  def test_missing_funding_file_fails
+    with_fixture(remove: [".github/FUNDING.yml"]) do |root|
+      result = run_checker(root)
+
+      refute result[:status].success?
+      assert_includes result[:output], "Missing required file: .github/FUNDING.yml"
+    end
+  end
+
+  def test_invalid_funding_handle_fails
+    with_fixture(overrides: { ".github/FUNDING.yml" => "ko_fi: another_account\n" }) do |root|
+      result = run_checker(root)
+
+      refute result[:status].success?
+      assert_includes result[:output], "Funding configuration must contain ko_fi: tinkora"
+    end
+  end
+
+  def test_missing_readme_funding_link_fails
+    with_fixture(overrides: { "README.md" => "# Template\n" }) do |root|
+      result = run_checker(root)
+
+      refute result[:status].success?
+      assert_includes result[:output], "README.md must include https://ko-fi.com/tinkora"
     end
   end
 
