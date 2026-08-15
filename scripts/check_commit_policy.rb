@@ -3,10 +3,20 @@
 require "open3"
 require "optparse"
 
-LEGACY_IDENTITY = /zfjoy520|zhufujun|549978074@qq\.com|tinkora\.ai@gmail\.com/i
+ORGANIZATION_NAMES = ["tinkeragora", "Tinker Agora"].freeze
+ORGANIZATION_EMAIL = "314183062+tinkeragora@users.noreply.github.com"
+BOT_NAME = /\A.+\[bot\]\z/
+BOT_EMAIL = /\A\d+\+.+\[bot\]@users\.noreply\.github\.com\z/
 HAN_TEXT = /\p{Han}/
 RECORD_SEPARATOR = "\x1E"
 FIELD_SEPARATOR = "\x1F"
+
+def allowed_identity?(name, email)
+  return true if ORGANIZATION_NAMES.include?(name) && email == ORGANIZATION_EMAIL
+  return true if name == "GitHub" && email == "noreply@github.com"
+
+  name.match?(BOT_NAME) && email.match?(BOT_EMAIL)
+end
 
 options = { root: Dir.pwd }
 OptionParser.new do |parser|
@@ -43,10 +53,8 @@ stdout.split(RECORD_SEPARATOR).reject(&:empty?).each do |record|
     record.split(FIELD_SEPARATOR, 7)
   sha = sha.to_s.strip
 
-  identity = [author_name, author_email, committer_name, committer_email].join(" ")
-  if identity.match?(LEGACY_IDENTITY)
-    errors << "#{sha}: legacy author identity is not allowed"
-  end
+  errors << "#{sha}: author identity is not allowed" unless allowed_identity?(author_name, author_email)
+  errors << "#{sha}: committer identity is not allowed" unless allowed_identity?(committer_name, committer_email)
 
   message = [subject, body].compact.join("\n")
   errors << "#{sha}: commit message must not contain Han characters" if message.match?(HAN_TEXT)
